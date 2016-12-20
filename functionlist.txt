@@ -1,0 +1,91 @@
+Setup Functions
+===============
+initializeCensus(apiKey)
+
+Request Functions
+=================
+- request data from the server
+requestUSData(year, variable)
+- requests value for all states in the US
+requestStateData(state (two letter code), year, variable)
+- requests value for all counties in the specified state
+requestLatLonData(lat, lon, year, variable)
+
+Ready Functions
+===============
+- returns true if data has been returned from server
+  and is ready to use, false otherwise
+USDataIsReady(year, variable)
+stateDataIsReady(state (two letter code), year, variable)
+latLonDataIsReady(lat, lon, year, variable)
+
+
+Get Functions
+=============
+getUSData(year, variable)
+- returns a JSON object with key-value pattern
+  { state (full name) : variable value }
+getStateData(state (two letter code), year, variable)
+- returns a JSON object with key-value pattern
+  { county {full name) : variable value }
+getLatLonData(lat, lon, year, variable)
+- returns the value of the variable for that location and year
+
+Map Functions
+=============
+requestUSMap()
+requestStateMap(state (two letter code))
+
+USMapIsReady()
+stateMapIsReady(state (two letter code))
+
+createUSMap(x, y, w, h)
+- returns a Map object that draws the US with top left corner
+  at (x, y), and with width w and height h
+createStateMap(state (two letter code), x, y, w, h)
+- returns a Map object that draws the specified state with top left corner
+  at (x, y), and with width w and height h
+
+Map.show()
+Map.hide()
+
+Map.moveX(offset)
+- moves the map left or right by the specified number of pixels
+Map.moveY(offset)
+- moves the map up or down by the specified number of pixels
+
+Map.scale(multiplier)
+- scales the map by the given multiplier. < 1 makes it smaller, 
+> 1 makes it bigger
+
+Map.fill(region, color)
+- fills the specified region of the map with the specified color.
+  region should be full county names for state maps and full state
+  names for US maps
+Map.noFill(region)
+
+Map.stroke(region, color)
+- outlines the specified region of the map with the specified color.
+  region should be full county names for state maps and full state 
+  names for US maps
+Map.noStroke(region)
+
+Map.getStateNames()
+- (only works for US map) returns an array of state names (full names)
+Map.getCountyNames()
+- (only works for state map) returns an array of county names
+
+Map.latLonToXY(lat, lon)
+- returns coordinates on screen of map at that lat, lon location, based
+  on geobounds, projection, and location and size of map on screen
+
+Callbacks
+=========
+You can define the following:
+
+mouseEnter(region)
+- fires when the mouse enters the specified region
+mouseLeave(region)
+- fires when the mouse leaves the specified region
+mouseClick(region)
+- fires when there is a mouse click on the specified region
